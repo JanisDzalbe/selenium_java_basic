@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import selenium.utility.BootcampUtils;
 
 import java.io.File;
 
@@ -15,11 +16,9 @@ public class Sample6Task {
     // method which is being run before each test
     @BeforeEach
     public void startingTests() throws Exception {
-        // from Sample 1:
-        String libWithDriversLocation = System.getProperty("user.dir") + File.separator + "lib" + File.separator;
-        System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new selenium.ChangeToFileExtension().extension());
-        // declaration above:
-        driver = new ChromeDriver();
+        // Initialize driver
+        driver = BootcampUtils.initializeChromeDriver();
+
         //open page:
         driver.get("https://kristinek.github.io/site/examples/locators");
     }

@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import selenium.pages.ColorSamplePage;
+import selenium.utility.BootcampUtils;
 
 import java.io.File;
 import java.time.Duration;
@@ -18,9 +19,10 @@ public class Sample10Task {
 
     @BeforeEach
     public void openPage() {
-        String libWithDriversLocation = System.getProperty("user.dir") + File.separator + "lib" + File.separator;
-        System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new selenium.ChangeToFileExtension().extension());
-        driver = new ChromeDriver();
+        // Initialize driver
+        driver = BootcampUtils.initializeChromeDriver();
+
+        // Set timeout and open page
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get("https://kristinek.github.io/site/examples/loading_color");
         colorPage = PageFactory.initElements(driver, ColorSamplePage.class);

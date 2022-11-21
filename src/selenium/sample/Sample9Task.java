@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import selenium.utility.BootcampUtils;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -20,9 +21,10 @@ public class Sample9Task {
 
     @BeforeEach
     public void openPage() {
-        String libWithDriversLocation = System.getProperty("user.dir") + File.separator + "lib" + File.separator;
-        System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new selenium.ChangeToFileExtension().extension());
-        driver = new ChromeDriver();
+        // Initialize driver
+        driver = BootcampUtils.initializeChromeDriver();
+
+        // load web page
         driver.get("https://kristinek.github.io/site/examples/loading_color");
     }
 
