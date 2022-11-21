@@ -1,8 +1,8 @@
 package selenium.tasks;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -11,7 +11,7 @@ import java.io.File;
 public class Task1 {
     WebDriver driver;
 
-    @Before
+    @BeforeEach
     public void openPage() {
 
         String libWithDriversLocation = System.getProperty("user.dir") + File.separator + "lib" + File.separator;
@@ -20,7 +20,7 @@ public class Task1 {
         driver.get("https://kristinek.github.io/site/tasks/enter_a_number");
     }
 
-    @After
+    @AfterEach
     public void closeBrowser() {
         driver.close();
     }

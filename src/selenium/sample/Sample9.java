@@ -1,8 +1,8 @@
 package selenium.sample;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
@@ -11,9 +11,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Sample9 {
 
@@ -21,13 +22,13 @@ public class Sample9 {
     private static WebDriverWait wait;
     static long startTime;
 
-    @Before
+    @BeforeEach
     public void openPage() {
         String libWithDriversLocation = System.getProperty("user.dir") + File.separator + "lib" + File.separator;
         System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new selenium.ChangeToFileExtension().extension());
         driver = new ChromeDriver();
 
-        wait = (WebDriverWait) new WebDriverWait(driver, 10).ignoring(StaleElementReferenceException.class);
+        wait = (WebDriverWait) new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(StaleElementReferenceException.class);
 
         driver.get("https://kristinek.github.io/site/examples/sync");
 
@@ -42,7 +43,7 @@ public class Sample9 {
         assertEquals("What is this magic? It's dev magic~", driver.findElement(By.id("magic_text")).getText());
     }
 
-    @After
+    @AfterEach
     public void closeBrowser() {
         long endTime = System.currentTimeMillis();
         System.out.println("Total time was: " + (endTime - startTime));

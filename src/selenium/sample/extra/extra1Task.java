@@ -1,8 +1,8 @@
 package selenium.sample.extra;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -14,7 +14,7 @@ public class extra1Task {
     String new_url = "https://kristinek.github.io/site/examples/link1";
 
     // method which is being run before each test
-    @Before
+    @BeforeEach
     public void startingTests() throws Exception {
         // from Sample 1:
         String libWithDriversLocation = System.getProperty("user.dir") + File.separator + "lib" + File.separator;
@@ -27,7 +27,7 @@ public class extra1Task {
     }
 
     // method which is being run after each test
-    @After
+    @AfterEach
     public void endingTests() throws Exception {
         driver.close();
     }

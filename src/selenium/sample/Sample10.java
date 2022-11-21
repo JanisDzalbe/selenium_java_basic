@@ -1,8 +1,8 @@
 package selenium.sample;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -17,7 +17,7 @@ public class Sample10 {
     static AgeSamplePage agePage;
     static AgeSubmittedSamplePage ageSubmittedPage;
 
-    @Before
+    @BeforeEach
     public void openPage() throws InterruptedException {
         String libWithDriversLocation = System.getProperty("user.dir") + File.separator + "lib" + File.separator;
         System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new selenium.ChangeToFileExtension().extension());
@@ -28,7 +28,7 @@ public class Sample10 {
         ageSubmittedPage = PageFactory.initElements(driver, AgeSubmittedSamplePage.class);
     }
 
-    @After
+    @AfterEach
     public void closeBrowser() {
         driver.close();
     }

@@ -1,21 +1,21 @@
 package selenium.sample;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.File;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class Sample3 {
     WebDriver driver;
 
     // method which is being run before each test
-    @Before
+    @BeforeEach
     public void startingTests() throws Exception {
         // from Sample 1:
         String libWithDriversLocation = System.getProperty("user.dir") + File.separator + "lib" + File.separator;
@@ -28,7 +28,7 @@ public class Sample3 {
     }
 
     // method which is being run after each test
-    @After
+    @AfterEach
     public void endingTests() throws Exception {
         driver.quit();
     }
@@ -110,7 +110,7 @@ public class Sample3 {
     @Test
     public void assertEqualsExampleWithCustomError() throws Exception {
         try {
-            assertEquals("custom message", 3, 4);
+            assertEquals(3, 4, "custom message");
         } catch (AssertionError e) {
             System.err.println("We failed with custom message”");
             e.printStackTrace();
