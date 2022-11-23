@@ -3,9 +3,12 @@ package selenium.sample;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import selenium.pages.ColorSamplePage;
 import selenium.utility.BootcampUtils;
 
@@ -30,19 +33,26 @@ public class Sample10Task {
 
     @AfterEach
     public void closeBrowser() {
+
         driver.close();
     }
 
+
     @Test
-    public void loadGreenSleep() throws Exception {
-//         TODO:
-//         Use page object ColorSamplePage
-//         * 1) click on start loading green button
+    public void greenLoading() {
+        //         * 1) click on start loading green button
+        colorPage.clickStartLoadingGreen();
 //         * 2) check that button does not appear,
+        colorPage.visibilityOfGreenButton();
 //         * but loading text is seen instead   "Loading green..."
+        colorPage.visibilityOfLoadingGreen();
 //         * 3) check that both button
+        colorPage.visibilityOfGreenButton();
 //         * and loading text is not seen,
+        colorPage.invisibilityOfLoadingGreen();
 //         * success is seen instead "Green Loaded"
+        colorPage.visibilityOfGreenLoadingFinish();
     }
+
 
 }
