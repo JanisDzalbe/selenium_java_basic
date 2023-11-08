@@ -35,7 +35,7 @@ public class Sample3 {
     public void assertEqualsExampleString() throws Exception {
         String expected = "Heading 1";
         String actual = driver.findElement(By.id("heading_1")).getText();
-        assertEquals(expected, actual);
+        assertEquals(expected, actual); //vedem daca elementul asteptat acela este exact acela de pe site
     }
 
     @Test

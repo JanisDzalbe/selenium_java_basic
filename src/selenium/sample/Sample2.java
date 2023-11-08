@@ -35,6 +35,7 @@ public class Sample2 {
     public void findElementByID() throws Exception {
         // works:
         System.out.println(driver.findElement(By.id("heading_1")).getText());
+        Thread.sleep(10000);
         // will fail with error NoSuchElementException
         // no such element:
         // Unable to locate element: {"method":"id","selector":"headingasdga"}

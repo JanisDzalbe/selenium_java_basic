@@ -37,21 +37,28 @@ public class Sample3Task {
     public void assertEqualsTask() throws Exception {
 //         TODO:
 //         check how many element with class "test" there are on page (5)
-//         check that value of second button is "This is also a button"
+        //assertEquals(driver.findElement(By.className("test")).size(), 5);
+        assertEquals(5, driver.findElements(By.className("test")).size());
+        // check that value of second button is "This is also a button"
+        assertEquals("This is also a button", driver.findElement(By.name("randomButton2")).getAttribute("value"));
+//
     }
-
     @Test
     public void assertTrueTask() throws Exception {
 //         TODO:
 //         check that it is True that value of second button is
 //         "this is Also a Button" if you ignore Caps Locks
 //         fail with custom error message:
+        String buttonTextValue = driver.findElement(By.id("buttonId")).getAttribute("value");
+        assertTrue(buttonTextValue.equalsIgnoreCase("This is Also a Button"));
     }
 
     @Test
     public void assertFalseTask() throws Exception {
 //         TODO:
 //        check that it is False that value of second button is "This is a button"
+        String buttonTextValue = driver.findElement(By.id("buttonId")).getAttribute("value");
+        assertFalse(buttonTextValue.equals("This is a button"), "Fail, message is not visible");
     }
 
     @Test
@@ -59,5 +66,20 @@ public class Sample3Task {
 //        TODO:
 //        check that none of items with class "test"
 //        contain number 190
+        String number = "190";
+        List<WebElement> allElementsWithClass = driver.findElements(By.className("test"));
+
+        for (WebElement elementWithClass: allElementsWithClass) {
+            System.out.println(elementWithClass.getText());
+            assertFalse(elementWithClass.getText().equals(number));
+            assertFalse(elementWithClass.getText().contains(number), "Message");
+
+            assertNotEquals(elementWithClass.getText(), "They are equal");
+
+
+
+        }
+
+
     }
 }
