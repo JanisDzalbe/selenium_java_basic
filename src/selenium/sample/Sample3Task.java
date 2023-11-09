@@ -77,6 +77,16 @@ public class Sample3Task {
             assertNotEquals(elementWithClass.getText(), "They are equal");
 
 
+            //List<WebElement> elementTextOnPage = driver.findElements(By.className(classTest));
+           // try {
+              //  for (WebElement element: elementTextOnPage){
+              //      assertFalse(element.getText().contains("190"),"Message");
+                //}
+           // } catch (AssertionError e) {
+            //    e.printStackTrace();
+           // }
+
+
 
         }
 
