@@ -1,7 +1,7 @@
 package selenium.sample.extra;
 
-import org.junit.After;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -14,7 +14,7 @@ public class extra2Task {
     WebDriver driver;
     String libWithDriversLocation = System.getProperty("user.dir") + File.separator + "lib" + File.separator;
 
-    @After
+    @AfterEach
     public void endingTests() throws Exception {
         driver.close();
     }

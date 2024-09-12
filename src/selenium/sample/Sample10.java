@@ -1,15 +1,17 @@
 package selenium.sample;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import selenium.pages.AgeSamplePage;
 import selenium.pages.AgeSubmittedSamplePage;
+import selenium.utility.BootcampUtils;
 
 import java.io.File;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class Sample10 {
@@ -17,18 +19,21 @@ public class Sample10 {
     static AgeSamplePage agePage;
     static AgeSubmittedSamplePage ageSubmittedPage;
 
-    @Before
+    @BeforeEach
     public void openPage() throws InterruptedException {
-        String libWithDriversLocation = System.getProperty("user.dir") + File.separator + "lib" + File.separator;
-        System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new selenium.ChangeToFileExtension().extension());
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        // Initialize driver
+        driver = BootcampUtils.initializeChromeDriver();
+
+        // Set an implicity wait
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+        // Open page and create Page Objects via Selenium's PageFactory
         driver.get("https://kristinek.github.io/site/examples/age");
         agePage = PageFactory.initElements(driver, AgeSamplePage.class);
         ageSubmittedPage = PageFactory.initElements(driver, AgeSubmittedSamplePage.class);
     }
 
-    @After
+    @AfterEach
     public void closeBrowser() {
         driver.close();
     }
