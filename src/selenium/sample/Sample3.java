@@ -1,34 +1,32 @@
 package selenium.sample;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import selenium.utility.BootcampUtils;
 
 import java.io.File;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class Sample3 {
     WebDriver driver;
 
     // method which is being run before each test
-    @Before
+    @BeforeEach
     public void startingTests() throws Exception {
-        // from Sample 1:
-        String libWithDriversLocation = System.getProperty("user.dir") + File.separator + "lib" + File.separator;
-        System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new selenium.ChangeToFileExtension().extension());
-        // declaration above:
-        driver = new ChromeDriver();
+        // Initialize driver
+        driver = BootcampUtils.initializeChromeDriver();
 
         //open page:
         driver.get("https://kristinek.github.io/site/examples/locators");
     }
 
     // method which is being run after each test
-    @After
+    @AfterEach
     public void endingTests() throws Exception {
         driver.quit();
     }
@@ -37,7 +35,7 @@ public class Sample3 {
     public void assertEqualsExampleString() throws Exception {
         String expected = "Heading 1";
         String actual = driver.findElement(By.id("heading_1")).getText();
-        assertEquals(expected, actual);
+        assertEquals(expected, actual); //vedem daca elementul asteptat acela este exact acela de pe site
     }
 
     @Test
@@ -110,7 +108,7 @@ public class Sample3 {
     @Test
     public void assertEqualsExampleWithCustomError() throws Exception {
         try {
-            assertEquals("custom message", 3, 4);
+            assertEquals(3, 4, "custom message");
         } catch (AssertionError e) {
             System.err.println("We failed with custom message”");
             e.printStackTrace();

@@ -1,35 +1,33 @@
 package selenium.sample;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import selenium.utility.BootcampUtils;
 
 import java.io.File;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Sample8 {
     WebDriver driver;
 
     // method which is being run before each test
-    @Before
+    @BeforeEach
     public void startingTests() throws Exception {
-        // from Sample 1:
-        String libWithDriversLocation = System.getProperty("user.dir") + File.separator + "lib" + File.separator;
-        System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new selenium.ChangeToFileExtension().extension());
-        // declaration above:
-        driver = new ChromeDriver();
+        // Initialize driver
+        driver = BootcampUtils.initializeChromeDriver();
 
         //open page:
         driver.get("https://kristinek.github.io/site/examples/styles");
     }
 
     // method which is being run after each test
-    @After
+    @AfterEach
     public void endingTests() throws Exception {
         driver.close();
     }

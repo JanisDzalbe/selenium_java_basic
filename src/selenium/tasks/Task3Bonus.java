@@ -1,8 +1,8 @@
 package selenium.tasks;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -21,7 +21,7 @@ public class Task3Bonus {
 //    Bonus:
 //    try storing people via an Object/separate class
 
-    @Before
+    @BeforeEach
     public void openPage() {
         String libWithDriversLocation = System.getProperty("user.dir") + File.separator + "lib" + File.separator;
         System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new selenium.ChangeToFileExtension().extension());
@@ -29,7 +29,7 @@ public class Task3Bonus {
         driver.get("https://kristinek.github.io/site/tasks/list_of_people_with_jobs");
     }
 
-    @After
+    @AfterEach
     public void closeBrowser() {
         driver.close();
     }

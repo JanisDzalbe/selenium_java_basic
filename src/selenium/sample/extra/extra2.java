@@ -1,7 +1,7 @@
 package selenium.sample.extra;
 
-import org.junit.After;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,7 +12,7 @@ import org.openqa.selenium.support.Color;
 
 import java.io.File;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class extra2 {
@@ -29,7 +29,7 @@ public class extra2 {
         System.out.println(driver.findElement(By.tagName("h1")).getCssValue("background-color"));
     }
 
-    @After
+    @AfterEach
     public void endingTests() throws Exception {
         driver.close();
     }

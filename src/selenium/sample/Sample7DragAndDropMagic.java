@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 import java.io.*;
 import java.nio.charset.Charset;
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 public class Sample7DragAndDropMagic {
     public static void dragAndDropMagic(WebDriver driver, String source, String target) {
@@ -17,7 +17,7 @@ public class Sample7DragAndDropMagic {
             final String JQUERY_LOAD_SCRIPT = (basePath + "/lib/jquery_load_helper.js");
             String jQueryLoader = readFile(JQUERY_LOAD_SCRIPT);
 
-            driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
+            driver.manage().timeouts().setScriptTimeout(Duration.ofSeconds(10));
 
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeAsyncScript(

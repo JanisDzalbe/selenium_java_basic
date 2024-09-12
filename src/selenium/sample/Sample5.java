@@ -1,36 +1,34 @@
 package selenium.sample;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import selenium.utility.BootcampUtils;
 
 import java.io.File;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Sample5 {
     WebDriver driver;
 
     // method which is being run before each test
-    @Before
+    @BeforeEach
     public void startingTests() throws Exception {
-        // from Sample 1:
-        String libWithDriversLocation = System.getProperty("user.dir") + File.separator + "lib" + File.separator;
-        System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new selenium.ChangeToFileExtension().extension());
-        // declaration above:
-        driver = new ChromeDriver();
+        // Initialize driver
+        driver = BootcampUtils.initializeChromeDriver();
 
         //open page:
         driver.get("https://kristinek.github.io/site/examples/alerts_popups");
     }
 
     // method which is being run after each test
-    @After
+    @AfterEach
     public void endingTests() throws Exception {
         driver.close();
     }
@@ -86,7 +84,7 @@ public class Sample5 {
         Alert alert = driver.switchTo().alert();
         assertEquals("Please enter a number", alert.getText());
 
-        alert.sendKeys(enterKeys);
+        alert.sendKeys(enterKeys); //enter a value into alert
         alert.accept();
         assertTrue(driver.findElement(By.id("textForAlerts")).getText().contains("instead of " + enterKeys));
     }
